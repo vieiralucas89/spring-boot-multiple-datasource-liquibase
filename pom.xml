@@ -70,14 +70,16 @@
                         <artifactId>liquibase-maven-plugin</artifactId>
                         <version>${liquibase.version}</version>
                         <configuration>
-                            <changeLogFile>liquibase/master.xml</changeLogFile>
-                            <url>${dbUrl1}</url>
+                            <propertyFile>src/main/resources/liquibase/liquibase-dev-corp.properties
+                            </propertyFile>
+                            <url>${dbUrl2}</url>
                             <driver>org.postgresql.Driver</driver>
                             <username>${dbUser}</username>
                             <password>${dbPass}</password>
                             <defaultSchemaName>public</defaultSchemaName>
                             <propertyFileWillOverride>true</propertyFileWillOverride>
                             <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+                            <outputDefaultSchema>true</outputDefaultSchema>
                             <dropFirst>${dropFirst}</dropFirst>
                         </configuration>
                         <executions>
@@ -102,14 +104,16 @@
                         <artifactId>liquibase-maven-plugin</artifactId>
                         <version>${liquibase.version}</version>
                         <configuration>
-                            <changeLogFile>liquibase/master.xml</changeLogFile>
-                            <url>${dbUrl2}</url>
+                            <propertyFile>src/main/resources/liquibase/liquibase-dev-intra.properties
+                            </propertyFile>
+                            <url>${dbUrl1}</url>
                             <driver>org.postgresql.Driver</driver>
                             <username>${dbUser}</username>
                             <password>${dbPass}</password>
                             <defaultSchemaName>public</defaultSchemaName>
                             <propertyFileWillOverride>true</propertyFileWillOverride>
                             <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+                            <outputDefaultSchema>true</outputDefaultSchema>
                             <dropFirst>${dropFirst}</dropFirst>
                         </configuration>
                         <executions>
