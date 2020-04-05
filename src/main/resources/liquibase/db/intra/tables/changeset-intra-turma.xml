@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet author="lucas.aguiar" id="v1" dbms="postgresql">
+        <createTable schemaName="intra" tableName="turma">
+            <column name="id_turma" type="serial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="ds_turma" type="varchar(255)"/>
+            <column name="periodo" type="varchar(255)"/>
+            <column name="nr_alunos" type="integer"/>
+            <column name="dt_inicio" type="date"/>
+            <column name="dt_fim" type="varchar(255)"/>
+
+            <column name="id_curso" type="integer"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="turma"
+                                 baseColumnNames="id_curso"
+                                 baseTableSchemaName="intra"
+                                 constraintName="fk_turma_curso"
+                                 referencedTableName="curso"
+                                 referencedColumnNames="id_curso"
+                                 referencedTableSchemaName="intra"
+        />
+    </changeSet>
+
+</databaseChangeLog>

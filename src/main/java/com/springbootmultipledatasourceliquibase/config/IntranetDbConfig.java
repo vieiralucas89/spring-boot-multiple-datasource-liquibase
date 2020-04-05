@@ -43,7 +43,11 @@ public class IntranetDbConfig {
             EntityManagerFactoryBuilder builder, @Qualifier("intra_datasource") DataSource dataSource) {
         return builder.dataSource(dataSource)
                 .packages("com.springbootmultipledatasourceliquibase.domain.intranet.entidade")
-                .persistenceUnit("Carro")
+                .persistenceUnit("Departamento")
+                .persistenceUnit("Aluno")
+                .persistenceUnit("Curso")
+                .persistenceUnit("Professor")
+                .persistenceUnit("Turma")
                 .build();
     }
 

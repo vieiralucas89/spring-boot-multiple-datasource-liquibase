@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+
+    <changeSet author="luca.aguiar" id="v1" dbms="postgresql">
+        <createTable schemaName="intra"
+                     tableName="curso_disciplina">
+
+            <column name="id" type="serial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="id_curso" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="id_disciplina" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+
+        <addUniqueConstraint tableName="curso_disciplina"
+                             columnNames="id_curso,id_disciplina" schemaName="intra"/>
+
+        <addForeignKeyConstraint
+                constraintName="fk_curso_disciplina"
+                baseColumnNames="id_curso"
+                baseTableSchemaName="intra"
+                baseTableName="curso_disciplina"
+                referencedColumnNames="id_curso"
+                referencedTableName="curso"
+                referencedTableSchemaName="intra"/>
+
+        <addForeignKeyConstraint
+                constraintName="fk_disciplina_curso"
+                baseColumnNames="id_disciplina"
+                baseTableName="curso_disciplina"
+                baseTableSchemaName="intra"
+                referencedColumnNames="id_disciplina"
+                referencedTableName="disciplina"
+                referencedTableSchemaName="intra"/>
+
+    </changeSet>
+
+
+</databaseChangeLog>

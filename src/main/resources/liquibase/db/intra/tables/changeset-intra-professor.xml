@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet author="lucas.aguiar" id="v1" dbms="postgresql">
+
+        <createTable schemaName="intra" tableName="professor">
+            <column name="id_professor" type="serial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="ds_nome" type="varchar(255)"/>
+            <column name="ds_sobrenome" type="varchar(255)"/>
+            <column name="is_status" type="boolean"/>
+
+            <column name="id_departamento" type="integer"/>
+
+        </createTable>
+<!--        <addForeignKeyConstraint baseTableName="intra.intra_departamento"
+                                 baseColumnNames="id_departamento"
+                                 constraintName="fk_departamento_professor"
+                                 referencedTableName="intra.professor"
+                                 referencedColumnNames="id_departamento"/>-->
+
+<!--        <addForeignKeyConstraint
+                constraintName="fk_pessoa_cargo"
+                baseColumnNames="id_cargo"
+                baseTableName="cgo.cgo_pessoa_fisica_intra"
+                referencedColumnNames="id_cargo"
+                referencedTableName="intra.intra_cargo"/>-->
+
+    </changeSet>
+
+    <changeSet author="lucas.aguiar" id="v2" dbms="postgresql">
+        <addForeignKeyConstraint baseTableName="professor"
+                                 baseColumnNames="id_departamento"
+                                 baseTableSchemaName="intra"
+                                 constraintName="fk_departamento_professor"
+                                 referencedTableName="intra_departamento"
+                                 referencedColumnNames="id_departamento"
+                                 referencedTableSchemaName="intra"
+                                 />
+    </changeSet>
+
+</databaseChangeLog>
